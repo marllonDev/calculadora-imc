@@ -76,10 +76,11 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                       width: 75,
                       child: TextField(
                         decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            suffixText: 'kg'),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixText: 'kg',
+                        ),
                       ),
                     ),
                   ],
@@ -92,15 +93,31 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                       width: 75,
                       child: TextField(
                         decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            suffixText: 'cm'),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixText: 'cm',
+                        ),
                       ),
                     ),
                   ],
                 ),
               ],
+            ),
+            SizedBox(height: 20),
+            Container(
+              width: 200,
+              height: 60,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(Colors.deepPurple),
+                ),
+                child: Text(
+                  'Calcular',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
           ],
         ),
