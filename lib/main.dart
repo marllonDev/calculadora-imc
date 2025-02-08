@@ -30,6 +30,9 @@ class MinhaCalculadoraDeImc extends StatefulWidget {
 }
 
 class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
+  TextEditingController pesoController = TextEditingController(text: '');
+  TextEditingController alturaController = TextEditingController(text: '');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,15 +75,18 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                 Column(
                   children: [
                     Text('Seu Peso'),
-                    SizedBox(
+                    SizedBox(height: 6),
+                    Container(
                       width: 75,
                       child: TextField(
+                        controller: pesoController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
                           suffixText: 'kg',
                         ),
+                        keyboardType: TextInputType.number,
                       ),
                     ),
                   ],
@@ -89,15 +95,18 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                 Column(
                   children: [
                     Text('Sua Altura'),
-                    SizedBox(
+                    SizedBox(height: 6),
+                    Container(
                       width: 75,
                       child: TextField(
+                        controller: alturaController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
                           suffixText: 'cm',
                         ),
+                        keyboardType: TextInputType.number,
                       ),
                     ),
                   ],
@@ -109,7 +118,10 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
               width: 200,
               height: 60,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  print(pesoController.text);
+                  print(alturaController.text);
+                },
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.deepPurple),
                 ),
