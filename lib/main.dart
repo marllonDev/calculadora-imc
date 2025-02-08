@@ -33,6 +33,9 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
   TextEditingController pesoController = TextEditingController(text: '');
   TextEditingController alturaController = TextEditingController(text: '');
 
+  double? imc;
+  String? classificacao;
+  Color? corResultado;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,31 +46,40 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: 300,
-              width: 300,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(150),
-                border: Border.all(
-                  width: 10,
-                  color: Colors.green,
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '22.42',
-                    style: TextStyle(fontSize: 42, color: Colors.green),
+            imc == null
+                ? Text(
+                    'Adicione seu peso e sua altura \npara calcular seu IMC',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  )
+                : Container(
+                    height: 300,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(150),
+                      border: Border.all(
+                        width: 10,
+                        color: Colors.green,
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          imc!.toStringAsFixed(2),
+                          style: TextStyle(fontSize: 42, color: Colors.green),
+                        ),
+                        SizedBox(height: 12),
+                        Text(
+                          'Peso normal',
+                          style: TextStyle(fontSize: 20, color: Colors.green),
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(height: 12),
-                  Text(
-                    'Peso normal',
-                    style: TextStyle(fontSize: 20, color: Colors.green),
-                  ),
-                ],
-              ),
-            ),
             SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -77,7 +89,7 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                     Text('Seu Peso'),
                     SizedBox(height: 6),
                     Container(
-                      width: 75,
+                      width: 80,
                       child: TextField(
                         controller: pesoController,
                         decoration: InputDecoration(
@@ -97,14 +109,14 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                     Text('Sua Altura'),
                     SizedBox(height: 6),
                     Container(
-                      width: 75,
+                      width: 80,
                       child: TextField(
                         controller: alturaController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          suffixText: 'cm',
+                          suffixText: 'm',
                         ),
                         keyboardType: TextInputType.number,
                       ),
@@ -119,8 +131,11 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
-                  print(pesoController.text);
-                  print(alturaController.text);
+                  double peso = double.parse(pesoController.text);
+                  double altura = double.parse(alturaController.text);
+                  setState(() {
+                    imc = peso / (altura * altura);
+                  });
                 },
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.deepPurple),
