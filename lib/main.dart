@@ -30,12 +30,28 @@ class MinhaCalculadoraDeImc extends StatefulWidget {
 }
 
 class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
-  TextEditingController pesoController = TextEditingController(text: '');
-  TextEditingController alturaController = TextEditingController(text: '');
+  late TextEditingController pesoController;
+  late TextEditingController alturaController;
+
 
   double? imc;
   String? classificacao;
   Color? corResultado;
+
+   @override
+  void initState() {
+    pesoController = TextEditingController(text: '');
+    alturaController = TextEditingController(text: '');
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    pesoController.dispose();
+    alturaController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,15 +149,21 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                 onPressed: () {
                   try {
                     double peso = double.parse(pesoController.text);
-                  double altura = double.parse(alturaController.text);
-                  setState(() {
-                    imc = peso / (altura * altura);
-                    classificacao = getClassificacaoIMC(imc!);
-                    corResultado = getCorIMC(imc!);
-                  });
-                  } on Exception{
-                    return;
-                  };
+                    double altura = double.parse(alturaController.text);
+                    setState(
+                      () {
+                        imc = peso / (altura * altura);
+                        classificacao = getClassificacaoIMC(imc!);
+                        corResultado = getCorIMC(imc!);
+                      },
+                    );
+                  } on Exception {
+                    imc = null;
+                    classificacao = null;
+                    corResultado = null;
+                    pesoController.text = '';
+                    alturaController.text = '';
+                  }
                 },
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.deepPurple),
@@ -171,7 +193,7 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
       return 'Obesidade grau 2';
     } else if (imc >= 40) {
       return 'Obesidade grau 3';
-    } else{
+    } else {
       return 'Erro';
     }
   }
