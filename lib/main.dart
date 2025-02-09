@@ -34,15 +34,15 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
   late TextEditingController alturaController;
 
   double valorPeso = 50;
-  double valorAltura = 1.6;
+  double valorAltura = 1.4;
   double? imc;
   String? classificacao;
   Color? corResultado;
 
   @override
   void initState() {
-    pesoController = TextEditingController(text: '');
-    alturaController = TextEditingController(text: '');
+    pesoController = TextEditingController(text: valorPeso.toString());
+    alturaController = TextEditingController(text: valorAltura.toString());
     super.initState();
   }
 
@@ -101,56 +101,73 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
-                  children: [
-                    Text('Seu Peso'),
-                    SizedBox(height: 6),
-                    SizedBox(
-                      width: 80,
-                      child: TextField(
-                        controller: pesoController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text('Seu Peso'),
+                      SizedBox(height: 6),
+                      SizedBox(
+                        width: 100,
+                        child: TextField(
+                          enabled: false,
+                          controller: pesoController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            suffixText: 'kg',
                           ),
-                          suffixText: 'kg',
                         ),
-                        keyboardType: TextInputType.number,
                       ),
-                    ),
-                    Slider(
-                      value: valorPeso,
-                      onChanged: (peso) {
-                        setState(() {
-                          valorPeso = peso;
-                          pesoController.text = valorPeso.toString();
-                        });
-                      },
-                      min: 50,
-                      max: 200,
-                      activeColor: Colors.purple,
-                    )
-                  ],
+                      Slider(
+                        activeColor: Colors.purple,
+                        value: valorPeso,
+                        onChanged: (peso) {
+                          setState(() {
+                            valorPeso = peso;
+                            pesoController.text = valorPeso.toStringAsFixed(2);
+                          });
+                        },
+                        min: 50,
+                        max: 200,
+                      )
+                    ],
+                  ),
                 ),
-                SizedBox(width: 20),
-                Column(
-                  children: [
-                    Text('Sua Altura'),
-                    SizedBox(height: 6),
-                    SizedBox(
-                      width: 80,
-                      child: TextField(
-                        controller: alturaController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
+                SizedBox(width: 15),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text('Sua Altura'),
+                      SizedBox(height: 6),
+                      SizedBox(
+                        width: 100,
+                        child: TextField(
+                          enabled: false,
+                          controller: alturaController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            suffixText: 'm',
                           ),
-                          suffixText: 'm',
                         ),
-                        keyboardType: TextInputType.number,
                       ),
-                    ),
-                  ],
+                      Slider(
+                        activeColor: Colors.purple,
+                        value: valorAltura,
+                        onChanged: (altura) {
+                          setState(() {
+                            valorAltura = altura;
+                            alturaController.text =
+                                valorAltura.toStringAsFixed(2);
+                          });
+                        },
+                        min: 0.5,
+                        max: 2.5,
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
