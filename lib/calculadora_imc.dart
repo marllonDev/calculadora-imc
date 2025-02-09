@@ -37,7 +37,7 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.blueGrey[50],
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
