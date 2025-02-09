@@ -84,29 +84,32 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                           style: TextStyle(color: Colors.black),
                         ),
                       ),
-                      SliderTheme(
-                        data: SliderThemeData(
-                          activeTickMarkColor: Colors.purple,
-                          trackHeight: 0.1,
-                        ),
-                        child: Slider(
-                          activeColor: Colors.purple,
-                          value: valorPeso,
-                          onChanged: (peso) {
-                            setState(() {
-                              valorPeso = peso;
-                              pesoController.text =
-                                  valorPeso.toStringAsFixed(2);
-                            });
-                          },
-                          min: 50,
-                          max: 200,
+                      Container(
+                        padding: EdgeInsets.only(left: 20),
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: SliderTheme(
+                          data: SliderThemeData(
+                            activeTickMarkColor: Colors.purple,
+                            trackHeight: 5,
+                          ),
+                          child: Slider(
+                            activeColor: Colors.purple,
+                            value: valorPeso,
+                            onChanged: (peso) {
+                              setState(() {
+                                valorPeso = peso;
+                                pesoController.text =
+                                    valorPeso.toStringAsFixed(2);
+                              });
+                            },
+                            min: 50,
+                            max: 200,
+                          ),
                         ),
                       )
                     ],
                   ),
                 ),
-                SizedBox(width: 15),
                 Expanded(
                   child: Column(
                     children: [
@@ -135,23 +138,27 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                           style: TextStyle(color: Colors.black),
                         ),
                       ),
-                      SliderTheme(
-                        data: SliderThemeData(
-                          activeTickMarkColor: Colors.purple,
-                          trackHeight: 0.1,
-                        ),
-                        child: Slider(
-                          activeColor: Colors.purple,
-                          value: valorAltura,
-                          onChanged: (altura) {
-                            setState(() {
-                              valorAltura = altura;
-                              alturaController.text =
-                                  valorAltura.toStringAsFixed(2);
-                            });
-                          },
-                          min: 0.5,
-                          max: 2.5,
+                      Container(
+                        padding: EdgeInsets.only(right: 20),
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: SliderTheme(
+                          data: SliderThemeData(
+                            activeTickMarkColor: Colors.purple,
+                            trackHeight: 5,
+                          ),
+                          child: Slider(
+                            activeColor: Colors.purple,
+                            value: valorAltura,
+                            onChanged: (altura) {
+                              setState(() {
+                                valorAltura = altura;
+                                alturaController.text =
+                                    valorAltura.toStringAsFixed(2);
+                              });
+                            },
+                            min: 0.5,
+                            max: 2.5,
+                          ),
                         ),
                       )
                     ],
