@@ -120,17 +120,23 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                           ),
                         ),
                       ),
-                      Slider(
-                        activeColor: Colors.purple,
-                        value: valorPeso,
-                        onChanged: (peso) {
-                          setState(() {
-                            valorPeso = peso;
-                            pesoController.text = valorPeso.toStringAsFixed(2);
-                          });
-                        },
-                        min: 50,
-                        max: 200,
+                      SliderTheme(
+                        data: SliderThemeData(
+                          activeTickMarkColor: Colors.purple,
+                          trackHeight: 0.1,
+                        ),
+                        child: Slider(
+                          activeColor: Colors.purple,
+                          value: valorPeso,
+                          onChanged: (peso) {
+                            setState(() {
+                              valorPeso = peso;
+                              pesoController.text = valorPeso.toStringAsFixed(2);
+                            });
+                          },
+                          min: 50,
+                          max: 200,
+                        ),
                       )
                     ],
                   ),
@@ -154,18 +160,24 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                           ),
                         ),
                       ),
-                      Slider(
-                        activeColor: Colors.purple,
-                        value: valorAltura,
-                        onChanged: (altura) {
-                          setState(() {
-                            valorAltura = altura;
-                            alturaController.text =
-                                valorAltura.toStringAsFixed(2);
-                          });
-                        },
-                        min: 0.5,
-                        max: 2.5,
+                      SliderTheme(
+                        data: SliderThemeData(
+                          activeTickMarkColor: Colors.purple,
+                          trackHeight: 0.1,
+                        ),
+                        child: Slider(
+                          activeColor: Colors.purple,
+                          value: valorAltura,
+                          onChanged: (altura) {
+                            setState(() {
+                              valorAltura = altura;
+                              alturaController.text =
+                                  valorAltura.toStringAsFixed(2);
+                            });
+                          },
+                          min: 0.5,
+                          max: 2.5,
+                        ),
                       )
                     ],
                   ),
