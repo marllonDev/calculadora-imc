@@ -62,7 +62,7 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                       borderRadius: BorderRadius.circular(150),
                       border: Border.all(
                         width: 10,
-                        color: Colors.green,
+                        color: corResultado!,
                       ),
                     ),
                     child: Column(
@@ -70,12 +70,12 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                       children: [
                         Text(
                           imc!.toStringAsFixed(2),
-                          style: TextStyle(fontSize: 42, color: Colors.green),
+                          style: TextStyle(fontSize: 42, color: corResultado),
                         ),
                         SizedBox(height: 12),
                         Text(
                           classificacao!,
-                          style: TextStyle(fontSize: 20, color: Colors.green),
+                          style: TextStyle(fontSize: 20, color: corResultado),
                         ),
                       ],
                     ),
@@ -131,12 +131,17 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
-                  double peso = double.parse(pesoController.text);
+                  try {
+                    double peso = double.parse(pesoController.text);
                   double altura = double.parse(alturaController.text);
                   setState(() {
                     imc = peso / (altura * altura);
                     classificacao = getClassificacaoIMC(imc!);
+                    corResultado = getCorIMC(imc!);
                   });
+                  } on Exception{
+                    return;
+                  };
                 },
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.deepPurple),
@@ -168,6 +173,24 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
       return 'Obesidade grau 3';
     } else{
       return 'Erro';
+    }
+  }
+
+  Color? getCorIMC(double imc) {
+    if (imc < 18.5) {
+      return Colors.yellow;
+    } else if (imc < 24.9) {
+      return Colors.green;
+    } else if (imc < 29.9) {
+      return Colors.orange;
+    } else if (imc < 34.9) {
+      return Colors.red;
+    } else if (imc < 39.9) {
+      return Colors.red[900];
+    } else if (imc >= 40) {
+      return Colors.red[900];
+    } else {
+      return Colors.black;
     }
   }
 }
