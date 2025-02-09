@@ -59,7 +59,14 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                 Expanded(
                   child: Column(
                     children: [
-                      Text('Seu Peso'),
+                      Text(
+                        'Seu Peso',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
                       SizedBox(height: 6),
                       SizedBox(
                         width: 100,
@@ -67,11 +74,14 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                           enabled: false,
                           controller: pesoController,
                           decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            suffixText: 'kg',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            suffixText: 'kg',
                           ),
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                       SliderTheme(
@@ -100,7 +110,14 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                 Expanded(
                   child: Column(
                     children: [
-                      Text('Sua Altura'),
+                      Text(
+                        'Sua Altura',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
                       SizedBox(height: 6),
                       SizedBox(
                         width: 100,
@@ -108,11 +125,14 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                           enabled: false,
                           controller: alturaController,
                           decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            suffixText: 'm',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            suffixText: 'm',
                           ),
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                       SliderTheme(
