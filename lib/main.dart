@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:calculadora_imc/calculadora_imc.dart';
+import 'package:calculadora_imc/widgets/calculadora_imc.dart';
 
 void main() {
   runApp(const MyApp());

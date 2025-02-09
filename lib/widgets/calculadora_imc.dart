@@ -1,6 +1,6 @@
-import 'package:calculadora_imc/alerta_menssagem.dart';
-import 'package:calculadora_imc/botao_calcular.dart';
-import 'package:calculadora_imc/info_imc.dart';
+import 'package:calculadora_imc/widgets/alerta_menssagem.dart';
+import 'package:calculadora_imc/widgets/botao_calcular.dart';
+import 'package:calculadora_imc/widgets/info_imc.dart';
 import 'package:flutter/material.dart';
 
 class MinhaCalculadoraDeImc extends StatefulWidget {
