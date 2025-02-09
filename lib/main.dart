@@ -178,39 +178,29 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
-                  if (imc == null) {
-                    try {
-                      double peso = double.parse(pesoController.text);
-                      double altura = double.parse(alturaController.text);
-                      setState(
-                        () {
-                          imc = peso / (altura * altura);
-                          classificacao = getClassificacaoIMC(imc!);
-                          corResultado = getCorIMC(imc!);
-                        },
-                      );
-                    } on Exception {
-                      imc = null;
-                      classificacao = null;
-                      corResultado = null;
-                      pesoController.text = '';
-                      alturaController.text = '';
-                    }
-                  } else {
-                    setState(() {
-                      imc = null;
-                      classificacao = null;
-                      corResultado = null;
-                      pesoController.text = '';
-                      alturaController.text = '';
-                    });
+                  try {
+                    double peso = double.parse(pesoController.text);
+                    double altura = double.parse(alturaController.text);
+                    setState(
+                      () {
+                        imc = peso / (altura * altura);
+                        classificacao = getClassificacaoIMC(imc!);
+                        corResultado = getCorIMC(imc!);
+                      },
+                    );
+                  } on Exception {
+                    imc = null;
+                    classificacao = null;
+                    corResultado = null;
+                    pesoController.text = '';
+                    alturaController.text = '';
                   }
                 },
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.deepPurple),
                 ),
                 child: Text(
-                  imc == null ? 'Calcular' : 'Limpar',
+                  'Calcular',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
