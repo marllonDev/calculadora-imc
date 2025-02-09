@@ -33,6 +33,8 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
   late TextEditingController pesoController;
   late TextEditingController alturaController;
 
+  double valorPeso = 50;
+  double valorAltura = 1.6;
   double? imc;
   String? classificacao;
   Color? corResultado;
@@ -116,6 +118,17 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                         keyboardType: TextInputType.number,
                       ),
                     ),
+                    Slider(
+                      value: valorPeso,
+                      onChanged: (peso) {
+                        setState(() {
+                          valorPeso = peso;
+                        });
+                      },
+                      min: 50,
+                      max: 200,
+                      activeColor: Colors.purple,
+                    )
                   ],
                 ),
                 SizedBox(width: 20),
