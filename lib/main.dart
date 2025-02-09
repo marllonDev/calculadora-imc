@@ -123,6 +123,7 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
                       onChanged: (peso) {
                         setState(() {
                           valorPeso = peso;
+                          pesoController.text = valorPeso.toString();
                         });
                       },
                       min: 50,
