@@ -59,6 +59,7 @@ class _MinhaCalculadoraDeImcState extends State<MinhaCalculadoraDeImc> {
       backgroundColor: Colors.grey[300],
       body: SizedBox(
         width: double.infinity,
+        height: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
